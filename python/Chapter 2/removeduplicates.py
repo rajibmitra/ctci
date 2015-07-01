@@ -30,8 +30,7 @@ def removeDuplNoBuf(ml):
 
 if __name__ == '__main__':
     ml = LinkedList(0)
-    for i in (0, 3, 4, 0, 3, 18, 9, 18, 7, 4, 12):
-        ml.append(i)
+    [ml.append(i) for i in (0, 3, 4, 0, 3, 18, 9, 18, 7, 4, 12)]
     print(ml)
     removeDupl(ml)
     print(ml)

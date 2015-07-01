@@ -7,7 +7,7 @@ def isRotation(s1, s2):
         return False
 
     return (s2 * 2).find(s1) != -1
-    
+
 
 if __name__ == '__main__':
     words = ( ('erbottlewa', 'waterbottle'),

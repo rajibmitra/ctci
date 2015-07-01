@@ -1,6 +1,7 @@
 import unittest
 from classes.linkedlist import *
 from removeduplicates import *
+from kthlast import *
 
 class TestNode(unittest.TestCase):
     def testStrRepr(self):
@@ -47,6 +48,25 @@ class TestLinkedList(unittest.TestCase):
         [ml.append(i) for i in orig[1:]]
         removeDuplNoBuf(ml)
         self.assertEqual(str(ml), str(exp))
+
+    def testKthToLast(self):
+        '''kthToLast must return the expected node'''
+        ml = LinkedList(8)
+        [ml.append(i) for i in (3, -5, 24, 11, -9)]
+        self.assertEqual(kthToLast(ml, 0), None)
+        self.assertEqual(kthToLast(ml, 6), None)
+        self.assertEqual(kthToLast(ml, 1), -9)
+        self.assertEqual(kthToLast(ml, 3), 24)
+
+    def testKthToLastRunner(self):
+        '''kthToLastRunner must return the expected node'''
+        ml = LinkedList(8)
+        [ml.append(i) for i in (3, -5, 24, 11, -9)]
+        self.assertEqual(kthToLastRunner(ml, 0), None)
+        self.assertEqual(kthToLastRunner(ml, 6), None)
+        self.assertEqual(kthToLastRunner(ml, 1), -9)
+        self.assertEqual(kthToLastRunner(ml, 3), 24)
+        
 
 if __name__ == '__main__':
     unittest.main()
