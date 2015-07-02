@@ -32,8 +32,7 @@ def kthToLastRunner(ml, k):
 
 if __name__ == '__main__':
     ml = LinkedList(0)
-    for i in (3, -5, 2, 40, -7):
-        ml.append(i)
+    [ml.append(i) for i in (3, -5, 2, 40, -7)]
     print(ml)
     for i in (1, 3):
         n = kthToLast(ml, i)

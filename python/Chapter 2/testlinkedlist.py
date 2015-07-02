@@ -2,6 +2,7 @@ import unittest
 from classes.linkedlist import *
 from removeduplicates import *
 from kthlast import *
+from deletenode import *
 
 class TestNode(unittest.TestCase):
     def testStrRepr(self):
@@ -30,6 +31,21 @@ class TestLinkedList(unittest.TestCase):
         ml = LinkedList(0)
         [ml.append(i) for i in range(1, 5)]
         self.assertEqual(len(ml), 5)
+
+    def testKthOutOfBounds(self):
+        '''kth should return None for out of bounds nodes'''
+        ml = LinkedList(9)
+        self.assertEqual(ml.kth(0), None)
+        self.assertEqual(ml.kth(-1), None)
+        self.assertEqual(ml.kth(20), None)
+
+    def testKthKnown(self):
+        '''kth should return the expected node when it is known'''
+        ml = LinkedList(8)
+        [ml.append(i) for i in (3, -5, 24, 11, -9)]
+        self.assertEqual(ml.kth(1), 8)
+        self.assertEqual(ml.kth(3), -5)
+        self.assertEqual(ml.kth(6), -9)
 
     def testRemoveDupl(self):
         '''removeDupl must remove all duplicates from known structures'''
@@ -66,7 +82,33 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(kthToLastRunner(ml, 6), None)
         self.assertEqual(kthToLastRunner(ml, 1), -9)
         self.assertEqual(kthToLastRunner(ml, 3), 24)
-        
+
+    def testDeleteNodeNoSizeOne(self):
+        '''deleteNode should not remove anything from lists of size 1'''
+        orig = exp = [8]
+        ml = LinkedList(orig[0])
+        n = ml.kth(1)
+        deleteNode(n)
+        self.assertEqual(str(ml), str(exp))
+
+    def testDeleteNodeLast(self):
+        '''deleteNode should not remove the last node'''
+        orig = exp = [8, 10]
+        ml = LinkedList(orig[0])
+        [ml.append(i) for i in orig[1:]]
+        n = ml.kth(2)
+        deleteNode(n)
+        self.assertEqual(str(ml), str(exp))
+
+    def testDeleteNodeKnown(self):
+        '''deleteNode should remove the expected node'''
+        orig = [1, 2, 3, 4, 5, 6]
+        exp =  [1, 2,    4, 5, 6]
+        ml = LinkedList(orig[0])
+        [ml.append(i) for i in orig[1:]]
+        n = ml.kth(3)
+        deleteNode(n)
+        self.assertEqual(str(ml), str(exp))
 
 if __name__ == '__main__':
     unittest.main()

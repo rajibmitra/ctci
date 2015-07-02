@@ -36,6 +36,19 @@ class LinkedList:
         n.next = Node(d)
         self.size += 1
 
+    def kth(self, n):
+        if not self.head or n < 1:
+            return None
+
+        if n > len(self):
+            return None
+
+        k = self.head
+        for _ in range(n - 1):
+            k = k.next
+        return k
+                                                                                            
+
 if __name__ == '__main__':
     ml = LinkedList(0)
     for i in range(1, 10):
